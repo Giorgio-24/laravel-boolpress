@@ -1,0 +1,30 @@
+@extends('layouts.app');
+
+@section('content')
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($posts as $post)
+                    <tr>
+                        <th scope="row">{{ $post->id }}</th>
+                        <td>{{ $post->created_at }}</td>
+                        <td>{{ $post->title }}</td>
+                        <td><a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Vai</a></td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="3" class="text-center">Nessun post disponibile.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+@endsection
