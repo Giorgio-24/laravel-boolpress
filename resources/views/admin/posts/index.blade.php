@@ -7,17 +7,18 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Posted</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($posts as $post)
                     <tr>
                         <th scope="row">{{ $post->id }}</th>
-                        <td>{{ $post->created_at }}</td>
                         <td>{{ $post->title }}</td>
-                        <td><a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Vai</a></td>
+                        <td>{{ $post->created_at }}</td>
+                        <td><a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Go to post</a>
+                        </td>
                     </tr>
                 @empty
                     <tr>
