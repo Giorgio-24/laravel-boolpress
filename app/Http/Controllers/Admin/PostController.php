@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -26,7 +27,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $post = new Post();
+        return view('admin.post.create', compact('post'));
     }
 
     /**
@@ -37,7 +39,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'unique:posts', 'string', 'min:5', 'max:50'],
+            'content' => ['string'],
+            'image' => ['string'],
+        ], [
+            'required' => 'You must fill the :attribute field!',
+            'unique' => 'The :attribute field must be unique!',
+            'string' => 'You must insert a string!',
+            'min' => 'The value is too short!',
+            'max' => 'The value is too long!'
+        ]);
+
+        $data = $request->all();
+
+        $post = Post::create($data);
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**
@@ -57,9 +74,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -69,9 +86,25 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => ['required', Rule::unique('posts')->ignore($post->id), 'string', 'min:5', 'max:50'],
+            'content' => ['string'],
+            'image' => ['string'],
+        ], [
+            'required' => 'You must fill the :attribute field!',
+            'unique' => 'The :attribute field must be unique!',
+            'string' => 'You must insert a string!',
+            'min' => 'The value is too short!',
+            'max' => 'The value is too long!'
+        ]);
+
+        $data = $request->all();
+
+        $post->update($data);
+
+        return redirect()->route('admin.posts.show', compact('post'));
     }
 
     /**
@@ -80,8 +113,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('comics.index');
     }
 }
