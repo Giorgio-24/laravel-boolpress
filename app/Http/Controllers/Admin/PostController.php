@@ -27,8 +27,9 @@ class PostController extends Controller
      */
     public function create()
     {
+        $string = 'create';
         $post = new Post();
-        return view('admin.post.create', compact('post'));
+        return view('admin.posts.create', compact('post', 'string'));
     }
 
     /**
@@ -76,7 +77,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $string = 'edit';
+        return view('admin.posts.edit', compact('post', 'string'));
     }
 
     /**
