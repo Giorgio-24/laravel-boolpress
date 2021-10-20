@@ -27,5 +27,8 @@
                 @endforelse
             </tbody>
         </table>
+        <div class="mt-5 d-flex justify-content-center">
+            {{ $posts->links() }}
+        </div>
     </div>
 @endsection
