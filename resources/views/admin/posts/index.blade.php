@@ -15,6 +15,13 @@
                 <tr>
                     <th scope="row">{{ $loop->iteration + ($posts->currentPage() - 1) * 10 }}</th>
                     <td>{{ $post->title }}</td>
+                    <td>
+                        @if ($post->category)
+                            <span
+                                class="px-3 py-1 badge badge-pill badge-{{ $post->category->color }}">{{ $post->category->name }}</span>
+                        @else -
+                        @endif
+                    </td>
                     <td>{{ $post->created_at }}</td>
                     <td>
                         <div class="d-flex">

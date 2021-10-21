@@ -51,6 +51,18 @@
             <div class="form-text">Insert the image of the comic you want to {{ $string }}.</div>
         @enderror
     </div>
+    <div class="input-group mt-3 mb-1 col-12">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="category_id">Category</label>
+        </div>
+        <select class="custom-select" id="category_id" name="category_id">
+            <option>No category</option>
+            @foreach ($categories as $category)
+                <option @if (old('category_id') == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-text col-12">Insert the category of the comic you want to {{ $string }}.</div>
 </div>
 <button type="submit" class="btn btn-primary mt-4">Submit</button>
 </form>

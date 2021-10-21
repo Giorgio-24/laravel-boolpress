@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -29,7 +30,8 @@ class PostController extends Controller
     {
         $string = 'create';
         $post = new Post();
-        return view('admin.posts.create', compact('post', 'string'));
+        $categories = Category::all();
+        return view('admin.posts.create', compact('post', 'categories', 'string'));
     }
 
     /**
@@ -44,6 +46,7 @@ class PostController extends Controller
             'title' => ['required', 'unique:posts', 'string', 'min:5', 'max:50'],
             'content' => ['string'],
             'image' => ['string'],
+            'category_id' => ['nullable', 'exists:categories,id']
         ], [
             'required' => 'You must fill the :attribute field!',
             'unique' => 'The :attribute field must be unique!',

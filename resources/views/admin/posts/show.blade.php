@@ -5,6 +5,7 @@
             <img class="card-img-top" src="{{ $post->image }}" alt="{{ $post->title }}-image">
             <div class="card-body">
                 <h4 class="card-title font-weight-bold">{{ $post->title }}</h4>
+                <div><strong>Category:</strong> @if ($post->category) {{ $post->category_id }} @else no category. @endif</div>
                 <p class="card-text">{{ $post->content }}</p>
                 <a href="{{ route('admin.posts.index') }}" class="btn btn-primary">Go home</a>
             </div>
