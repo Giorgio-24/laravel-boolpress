@@ -2024,8 +2024,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-/* import axios from "axios"; */
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostsList",
   data: function data() {
@@ -2072,7 +2080,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.getPosts();
+    this.getPosts(6);
   }
 });
 
@@ -38527,6 +38535,19 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(post.title))]),
             _vm._v(" "),
+            _c("td", [
+              post.category
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "px-3 py-1 badge badge-pill",
+                      class: "badge-" + post.category.color
+                    },
+                    [_vm._v(_vm._s(post.category.name))]
+                  )
+                : _c("span", [_vm._v("No category")])
+            ]),
+            _vm._v(" "),
             _c("td", [_vm._v(_vm._s(_vm.getDate(post.created_at)))]),
             _vm._v(" "),
             _vm._m(1, true)
@@ -38614,6 +38635,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Title")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Category")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Posted")]),
         _vm._v(" "),

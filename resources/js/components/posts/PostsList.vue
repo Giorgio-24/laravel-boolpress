@@ -6,6 +6,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Title</th>
+          <th scope="col">Category</th>
           <th scope="col">Posted</th>
           <th scope="col"></th>
         </tr>
@@ -16,6 +17,15 @@
             {{ index + 1 + (pagination.currentPage - 1) * 10 }}
           </th>
           <td>{{ post.title }}</td>
+          <td>
+            <span
+              v-if="post.category"
+              class="px-3 py-1 badge badge-pill"
+              :class="`badge-${post.category.color}`"
+              >{{ post.category.name }}</span
+            >
+            <span v-else>No category</span>
+          </td>
           <td>{{ getDate(post.created_at) }}</td>
           <td><button class="btn btn-primary">Go to post</button></td>
         </tr>
@@ -57,7 +67,6 @@
 </template>
 
 <script>
-/* import axios from "axios"; */
 export default {
   name: "PostsList",
   data() {
@@ -99,7 +108,7 @@ export default {
     },
   },
   created() {
-    this.getPosts();
+    this.getPosts(6);
   },
 };
 </script>
