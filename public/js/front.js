@@ -1919,7 +1919,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1975,24 +1974,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* import axios from "axios"; */
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostsList",
   data: function data() {
     return {
-      baseUri: "http://localhost:8080",
+      baseUri: "http://localhost:8000",
       posts: []
     };
   },
   methods: {
     getPosts: function getPosts() {
+      var _this = this;
+
       axios.get("".concat(this.baseUri, "/api/posts")).then(function (res) {
-        console.log(res.data);
-        /* this.posts = res.data; */
+        _this.posts = res.data;
       })["catch"](function (err) {
         console.error(err);
       });
+    },
+    getDate: function getDate(date) {
+      var postDate = new Date(date);
+      var day = postDate.getDate();
+
+      if (day < 10) {
+        day = "0".concat(day);
+      }
+
+      var month = postDate.getMonth();
+
+      if (month < 10) {
+        month = "0".concat(month);
+      }
+
+      var year = postDate.getFullYear();
+      return "".concat(day, "-").concat(month, "-").concat(year);
     }
   },
   created: function created() {
@@ -38314,12 +38347,7 @@ var render = function() {
     [
       _c("Header"),
       _vm._v(" "),
-      _c(
-        "main",
-        { staticClass: "container" },
-        [_vm._v("\n    ciao\n    "), _c("Postlist")],
-        1
-      )
+      _c("main", { staticClass: "container" }, [_c("Postlist")], 1)
     ],
     1
   )
@@ -38387,13 +38415,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h2", [_vm._v("Ciao sono la lista")]),
+  return _c("div", { staticClass: "row mt-4" }, [
+    _c("h2", [_vm._v("Posts list:")]),
     _vm._v(" "),
-    _c("div", [_vm._v(_vm._s(this.posts))])
+    _c("table", { staticClass: "table mt-4" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.posts, function(post) {
+          return _c("tr", { key: post.id }, [
+            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(post.id))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(post.title))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.getDate(post.created_at)))]),
+            _vm._v(" "),
+            _vm._m(1, true)
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Title")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Posted")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-primary" }, [_vm._v("Go to post")])
+    ])
+  }
+]
 render._withStripped = true
 
 

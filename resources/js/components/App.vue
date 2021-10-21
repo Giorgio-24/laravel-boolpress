@@ -2,7 +2,6 @@
   <div class="container-fluid">
     <Header />
     <main class="container">
-      ciao
       <Postlist />
     </main>
   </div>
