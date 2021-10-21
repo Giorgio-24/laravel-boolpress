@@ -1949,8 +1949,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header"
 });
@@ -2080,7 +2078,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.getPosts(6);
+    this.getPosts();
   }
 });
 
@@ -6540,7 +6538,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "header[data-v-1f42fb90] {\n  height: 90px;\n  background-color: lightgrey;\n}", ""]);
+exports.push([module.i, "header[data-v-1f42fb90] {\n  height: 90px;\n  background-color: lightgrey;\n}\nheader a[data-v-1f42fb90] {\n  color: rgba(0, 0, 0, 0.5);\n  text-decoration: none;\n}", ""]);
 
 // exports
 
@@ -38481,17 +38479,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "row justify-content-between" }, [
-      _c("h3", { staticClass: "mt-0" }, [_vm._v("Boolpress")]),
-      _vm._v(" "),
-      _c("nav", [
-        _c("a", { attrs: { href: "#" } }, [_vm._v("Sono un link 1")]),
+    return _c(
+      "header",
+      { staticClass: "row px-3 justify-content-between align-items-center" },
+      [
+        _c("h3", { staticClass: "mt-0" }, [_vm._v("Boolpress")]),
         _vm._v(" "),
-        _c("a", { attrs: { href: "#" } }, [_vm._v("Sono un link 2")]),
-        _vm._v(" "),
-        _c("a", { attrs: { href: "#" } }, [_vm._v("Sono un link 3")])
-      ])
-    ])
+        _c("nav", [
+          _c("a", { attrs: { href: "http://localhost:8000/login" } }, [
+            _vm._v("Login")
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true

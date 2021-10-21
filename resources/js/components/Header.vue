@@ -1,10 +1,8 @@
 <template>
-  <header class="row justify-content-between">
+  <header class="row px-3 justify-content-between align-items-center">
     <h3 class="mt-0">Boolpress</h3>
     <nav>
-      <a href="#">Sono un link 1</a>
-      <a href="#">Sono un link 2</a>
-      <a href="#">Sono un link 3</a>
+      <a href="http://localhost:8000/login">Login</a>
     </nav>
   </header>
 </template>
@@ -19,5 +17,10 @@ export default {
 header {
   height: 90px;
   background-color: lightgrey;
+
+  a {
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+  }
 }
 </style>
