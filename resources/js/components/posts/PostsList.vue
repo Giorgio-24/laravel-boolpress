@@ -11,14 +11,48 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="post in posts" :key="post.id">
-          <th scope="row">{{ post.id }}</th>
+        <tr v-for="(post, index) in posts" :key="post.id">
+          <th scope="row">
+            {{ index + 1 + (pagination.currentPage - 1) * 10 }}
+          </th>
           <td>{{ post.title }}</td>
           <td>{{ getDate(post.created_at) }}</td>
           <td><button class="btn btn-primary">Go to post</button></td>
         </tr>
       </tbody>
     </table>
+    <div
+      aria-label="Page navigation example"
+      class="d-flex justify-content-center w-100 mt-2"
+    >
+      <ul class="pagination">
+        <li class="page-item clickable">
+          <a
+            v-if="pagination.currentPage > 1"
+            @click="getPosts(pagination.currentPage - 1)"
+            class="page-link"
+            >Previous</a
+          >
+        </li>
+        <li
+          class="page-item clickable"
+          :class="{ active: pagination.currentPage === n }"
+          v-for="n in pagination.lastPage"
+          :key="n"
+          @click="getPosts(n)"
+        >
+          <a class="page-link">{{ n }}</a>
+        </li>
+        <li class="page-item">
+          <a
+            v-if="pagination.lastPage > pagination.currentPage"
+            @click="getPosts(pagination.currentPage + 1)"
+            class="page-link clickable"
+            >Next</a
+          >
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -30,14 +64,21 @@ export default {
     return {
       baseUri: "http://localhost:8000",
       posts: [],
+      pagination: {},
     };
   },
   methods: {
-    getPosts() {
+    getPosts(page) {
       axios
-        .get(`${this.baseUri}/api/posts`)
+        .get(`${this.baseUri}/api/posts?page=${page}`)
         .then((res) => {
-          this.posts = res.data;
+          const { data, current_page, last_page } = res.data;
+
+          this.posts = data;
+          this.pagination = {
+            currentPage: current_page,
+            lastPage: last_page,
+          };
         })
         .catch((err) => {
           console.error(err);
@@ -64,4 +105,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.clickable {
+  cursor: pointer;
+}
 </style>
