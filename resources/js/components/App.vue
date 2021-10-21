@@ -3,7 +3,7 @@
     <Header />
     <main class="container">
       ciao
-      <Post />
+      <!--       <Post /> -->
     </main>
   </div>
 </template>

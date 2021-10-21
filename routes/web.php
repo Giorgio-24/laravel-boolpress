@@ -13,6 +13,6 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->
     //^Tutte le rotte protette dell'admin.
 });
 
-Route::get('/', function () {
+Route::get('{any?}', function () {
     return view('guest.home');
-});
+})->where('any', '.*');

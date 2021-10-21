@@ -1,6 +1,6 @@
 <template>
   <header class="row justify-content-between">
-    <h3>Boolpress</h3>
+    <h3 class="mt-0">Boolpress</h3>
     <nav>
       <a href="#">Sono un link 1</a>
       <a href="#">Sono un link 2</a>

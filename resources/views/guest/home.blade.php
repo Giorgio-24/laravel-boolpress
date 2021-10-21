@@ -9,9 +9,11 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Styles -->
-    <style>
+    {{-- <style>
         html,
         body {
             background-color: #fff;
@@ -64,11 +66,11 @@
             margin-bottom: 30px;
         }
 
-    </style>
+    </style> --}}
 </head>
 
 <body>
-    <div class="flex-center position-ref full-height">
+    {{-- <div class="flex-center position-ref full-height">
         @if (Route::has('login'))
             <div class="top-right links">
                 @auth
@@ -82,7 +84,7 @@
                 @endauth
             </div>
         @endif
-    </div>
+    </div> --}}
     <div id="app"></div>
     <script src="{{ asset('js/front.js') }}"></script>
 </body>
