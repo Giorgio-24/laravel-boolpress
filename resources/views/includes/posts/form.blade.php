@@ -1,10 +1,8 @@
 @if ($post->exists)
-    <form method="POST" action="{{ route('admin.posts.update', $post->id) }}"
-        class="border border-3 rounded my-5 p-5 bg-white">
+    <form method="POST" action="{{ route('admin.posts.update', $post->id) }}" class="border rounded my-5 p-5 bg-white">
         @method('PATCH')
     @else
-        <form method="POST" action="{{ route('admin.posts.store') }}"
-            class="border border-3 rounded my-5 p-5 bg-white">
+        <form method="POST" action="{{ route('admin.posts.store') }}" class="border rounded my-5 p-5 bg-white">
 @endif
 
 @csrf
