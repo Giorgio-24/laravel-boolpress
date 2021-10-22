@@ -28,8 +28,9 @@
           </td>
           <td>{{ getDate(post.created_at) }}</td>
           <td>
+            <!-- //!Not working yet. -->
             <button class="btn btn-primary" @click="showPost(post.id)">
-              Go to post //!Not working yet.
+              Go to post
             </button>
           </td>
         </tr>

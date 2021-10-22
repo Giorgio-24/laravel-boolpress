@@ -2036,6 +2036,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostsList",
   data: function data() {
@@ -38575,11 +38576,7 @@ var render = function() {
                     }
                   }
                 },
-                [
-                  _vm._v(
-                    "\n            Go to post //!Not working yet.\n          "
-                  )
-                ]
+                [_vm._v("\n            Go to post\n          ")]
               )
             ])
           ])
