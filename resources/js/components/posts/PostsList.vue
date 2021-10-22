@@ -27,7 +27,11 @@
             <span v-else>No category</span>
           </td>
           <td>{{ getDate(post.created_at) }}</td>
-          <td><button class="btn btn-primary">Go to post</button></td>
+          <td>
+            <button class="btn btn-primary" @click="showPost(post.id)">
+              Go to post //!Not working yet.
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -88,6 +92,17 @@ export default {
             currentPage: current_page,
             lastPage: last_page,
           };
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+    showPost(id) {
+      axios
+        .get(`${this.baseUri}/api/posts/${id}`)
+        .then((res) => {
+          const data = res.data;
+          this.posts = data;
         })
         .catch((err) => {
           console.error(err);
