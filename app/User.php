@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\UserInfo');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tags');
+    }
 }
