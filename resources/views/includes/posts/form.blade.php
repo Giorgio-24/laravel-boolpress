@@ -64,5 +64,18 @@
     </div>
     <div class="form-text col-12">Insert the category of the comic you want to {{ $string }}.</div>
 </div>
+<fieldset>
+    <h5>Tags</h5>
+
+    @foreach ($tags as $tag)
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1-{{ $tag->id }}"
+                @if (in_array($tag->id, old('tags', []))) checked @endif value="{{ $tag->id }}" name="$tags[]">{{-- Serve che tutti i name vengano raccolti sotto forma di array
+                     perchè le checkbox devono avere il name in comune --}}
+            <label class="form-check-label" for="inlineCheckbox1-{{ $tag->id }}">{{ $tag->name }}</label>
+        </div>
+    @endforeach
+
+</fieldset>
 <button type="submit" class="btn btn-primary mt-4">Submit</button>
 </form>

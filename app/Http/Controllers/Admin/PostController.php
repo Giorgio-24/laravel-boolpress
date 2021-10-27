@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
@@ -31,7 +32,8 @@ class PostController extends Controller
         $string = 'create';
         $post = new Post();
         $categories = Category::all();
-        return view('admin.posts.create', compact('post', 'categories', 'string'));
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('tags', 'post', 'categories', 'string'));
     }
 
     /**
@@ -46,7 +48,8 @@ class PostController extends Controller
             'title' => ['required', 'unique:posts', 'string', 'min:5', 'max:50'],
             'content' => ['string'],
             'image' => ['string'],
-            'category_id' => ['nullable', 'exists:categories,id']
+            'category_id' => ['nullable', 'exists:categories,id'],
+            'tags' => ['nullable', 'exists:tags,id',]
         ], [
             'required' => 'You must fill the :attribute field!',
             'unique' => 'The :attribute field must be unique!',
@@ -58,6 +61,8 @@ class PostController extends Controller
         $data = $request->all();
 
         $post = Post::create($data);
+        //Se ho dei tags allora creo la relazione.
+        if (array_key_exists('tags', $data)) $post->tags()->attach($data['tags']);
         return redirect()->route('admin.posts.show', $post);
     }
 
