@@ -27,12 +27,7 @@
             <span v-else>No category</span>
           </td>
           <td>{{ getDate(post.created_at) }}</td>
-          <td>
-            <!-- //!Not working yet. -->
-            <button class="btn btn-primary" @click="showPost(post.id)">
-              Go to post
-            </button>
-          </td>
+          <td></td>
         </tr>
       </tbody>
     </table>

@@ -58,7 +58,8 @@
         <select class="custom-select" id="category_id" name="category_id">
             <option>No category</option>
             @foreach ($categories as $category)
-                <option @if (old('category_id') == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
+                {{-- <option @if (old('category_id') == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option> --}}
+                <option @if ($post->category_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
     </div>
@@ -70,8 +71,9 @@
     @foreach ($tags as $tag)
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="inlineCheckbox1-{{ $tag->id }}"
-                @if (in_array($tag->id, old('tags', []))) checked @endif value="{{ $tag->id }}" name="$tags[]">{{-- Serve che tutti i name vengano raccolti sotto forma di array
-                     perchè le checkbox devono avere il name in comune --}}
+                {{-- value="{{ $tag->id }}" name="tags[]" @if (in_array($tag->id, old('tags', [])))  checked @endif> --}}{{-- Serve che tutti i name vengano raccolti sotto forma di array
+                     perchè le checkbox devono avere il name in comune --}} value="{{ $tag->id }}" name="tags[]"
+                @if (in_array($tag->id, $tagIds))  checked @endif>
             <label class="form-check-label" for="inlineCheckbox1-{{ $tag->id }}">{{ $tag->name }}</label>
         </div>
     @endforeach

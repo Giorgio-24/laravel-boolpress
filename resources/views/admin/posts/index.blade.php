@@ -27,6 +27,8 @@
                         <div class="d-flex">
                             <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary mr-2">Go to
                                 post</a>
+                            <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-info mr-2">Edit
+                                post</a>
                             <form method="POST" action="{{ route('admin.posts.destroy', $post->id) }}">
                                 @method('DELETE')
                                 @csrf
