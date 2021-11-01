@@ -112,7 +112,7 @@ class PostController extends Controller
             'string' => 'You must insert a string!',
             'min' => 'The value is too short!',
             'max' => 'The value is too long!'
-        ]);
+        ]); 
 
         $data = $request->all();
         if (!array_key_exists('tags', $data) && count($post->tags)) $post->tags()->detach();
